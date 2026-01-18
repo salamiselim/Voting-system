@@ -12,3 +12,35 @@ docs/
 
 # Dotenv file
 .env
+
+# Coverage reports
+coverage/
+lcov.info
+
+# Node modules (if using any)
+node_modules/
+
+# Foundry dependencies
+lib/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Foundry cache
+/cache
+
+# Test artifacts
+forge-cache/
+
+# Sensitive data
+broadcast/
+*.key
+*.secret
