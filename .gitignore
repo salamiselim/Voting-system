@@ -21,7 +21,6 @@ lcov.info
 node_modules/
 
 # Foundry dependencies
-lib/
 
 # IDE
 .vscode/

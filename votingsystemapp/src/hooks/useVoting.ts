@@ -1,5 +1,5 @@
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
-import { VOTING_SYSTEM_ABI, Candidate } from '@/config/abi';
+import { VOTING_SYSTEM_ABI } from '@/config/abi';
 import { VOTING_CONTRACT_ADDRESS } from '@/config/wagmi';
 
 // Read hooks

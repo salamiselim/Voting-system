@@ -12,7 +12,8 @@ export function AdminPanel() {
   const [candidateName, setCandidateName] = useState('');
   const [votingDuration, setVotingDuration] = useState('7');
 
-  const { data: isVotingActive } = useGetVotingStatus();
+  const { data: votingStatusData } = useGetVotingStatus();
+  const isVotingActive: boolean = Boolean(votingStatusData);
   
   const addCandidate = useAddCandidate();
   const startVoting = useStartVoting();
