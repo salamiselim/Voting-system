@@ -35,7 +35,7 @@ export function CandidatesDisplay() {
   return (
     <div className="bg-white rounded-lg shadow border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">📋 All Candidates</h2>
+        <h2 className="text-2xl font-bold text-gray-900">📋 All Candidates</h2> 
         <span className="text-sm text-gray-600">
           {candidatesArray.length} {candidatesArray.length === 1 ? 'Candidate' : 'Candidates'}
         </span>

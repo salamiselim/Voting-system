@@ -14,7 +14,7 @@ export function useGetAllCandidates() {
 export function useGetVotingStatus() {
   return useReadContract({
     address: VOTING_CONTRACT_ADDRESS,
-    abi: VOTING_SYSTEM_ABI,
+    abi: VOTING_SYSTEM_ABI, 
     functionName: 'getVotingStatus',
   });
 }
@@ -118,31 +118,6 @@ export function useAddCandidate() {
 
   return {
     addCandidate,
-    hash,
-    isPending,
-    isConfirming,
-    isConfirmed,
-    error,
-  };
-}
-
-export function useRegisterVoter() {
-  const { data: hash, writeContract, isPending, error } = useWriteContract();
-
-  const { isLoading: isConfirming, isSuccess: isConfirmed } = 
-    useWaitForTransactionReceipt({ hash });
-
-  const registerVoter = (voter: `0x${string}`, weight: bigint) => {
-    writeContract({
-      address: VOTING_CONTRACT_ADDRESS,
-      abi: VOTING_SYSTEM_ABI,
-      functionName: 'registerVoter',
-      args: [voter, weight],
-    });
-  };
-
-  return {
-    registerVoter,
     hash,
     isPending,
     isConfirming,
