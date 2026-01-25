@@ -9,15 +9,25 @@ import {
   useVote 
 } from '@/hooks/useVoting';
 
+// Add this type definition
+type Candidate = {
+  id: bigint;
+  name: string;
+  voteCount: bigint;
+};
+
 export function VotingInterface() {
   const { address } = useAccount();
   const [selectedCandidate, setSelectedCandidate] = useState<bigint | null>(null);
 
-  const { data: candidates, isLoading: loadingCandidates, refetch: refetchCandidates } = useGetAllCandidates();
+  const { data: candidatesData, isLoading: loadingCandidates, refetch: refetchCandidates } = useGetAllCandidates();
   const { data: isVotingActive } = useGetVotingStatus();
   const { data: hasVoted, refetch: refetchHasVoted } = useHasVoted(address);
   
   const { vote, isPending, isConfirming, isConfirmed, error } = useVote();
+
+  // Type assertion here
+  const candidates = candidatesData as Candidate[] | undefined;
 
   const handleVote = () => {
     if (selectedCandidate !== null) {
@@ -79,7 +89,7 @@ export function VotingInterface() {
         <p className="text-sm text-gray-600 mt-1">
           ✨ Open voting - Anyone can vote once per address!
         </p>
-      </div>
+      </div> 
       
       <div className="space-y-3 mb-6">
         {candidates.map((candidate) => (
@@ -143,7 +153,7 @@ export function VotingInterface() {
   );
 }
 
-function CandidateList({ candidates }: { candidates: readonly any[] }) {
+function CandidateList({ candidates }: { candidates: Candidate[] }) {
   return (
     <div className="space-y-3">
       <h3 className="font-semibold text-lg mb-3 text-gray-900">Current Results</h3>

@@ -87,7 +87,7 @@ export default function Home() {
             {isAdmin && activeTab === 'admin' ? (
               <AdminPanel />
             ) : (
-              <VotingInterface />
+              <VotingInterface /> 
             )}
           </div>
         )}
