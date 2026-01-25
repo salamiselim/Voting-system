@@ -31,7 +31,7 @@ export const hederaTestnet = defineChain({
 
 export const config = getDefaultConfig({
   appName: 'Decentralized Voting System',
-  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '',
+  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!,
   chains: [
     hederaTestnet,
     ...(process.env.NODE_ENV === 'development' ? [localhost] : []),
