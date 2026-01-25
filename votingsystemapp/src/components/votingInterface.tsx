@@ -9,12 +9,12 @@ import {
   useVote 
 } from '@/hooks/useVoting';
 
-// Add this type definition at the top
-type Candidate = {
+// Define the Candidate type
+interface Candidate {
   id: bigint;
   name: string;
   voteCount: bigint;
-};
+}
 
 export function VotingInterface() {
   const { address } = useAccount();
@@ -26,8 +26,8 @@ export function VotingInterface() {
   
   const { vote, isPending, isConfirming, isConfirmed, error } = useVote();
 
-  // Type assertion - this tells TypeScript what type candidates should be
-  const candidates = (candidatesData as Candidate[] | undefined) || [];
+  // Safely type and ensure candidates is always an array
+  const candidates: Candidate[] = Array.isArray(candidatesData) ? candidatesData : [];
 
   const handleVote = () => {
     if (selectedCandidate !== null) {
@@ -48,7 +48,7 @@ export function VotingInterface() {
     );
   }
 
-  if (!candidates || candidates.length === 0) {
+  if (candidates.length === 0) {
     return (
       <div className="bg-white rounded-lg shadow border border-gray-200 p-6">
         <div className="text-center text-gray-600">No candidates available yet</div>
@@ -178,4 +178,4 @@ function CandidateList({ candidates }: { candidates: Candidate[] }) {
       ))}
     </div>
   );
-} 
+}
