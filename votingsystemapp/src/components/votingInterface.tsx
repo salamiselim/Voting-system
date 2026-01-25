@@ -9,7 +9,7 @@ import {
   useVote 
 } from '@/hooks/useVoting';
 
-// Add this type definition
+// Add this type definition at the top
 type Candidate = {
   id: bigint;
   name: string;
@@ -26,8 +26,8 @@ export function VotingInterface() {
   
   const { vote, isPending, isConfirming, isConfirmed, error } = useVote();
 
-  // Type assertion here
-  const candidates = candidatesData as Candidate[] | undefined;
+  // Type assertion - this tells TypeScript what type candidates should be
+  const candidates = (candidatesData as Candidate[] | undefined) || [];
 
   const handleVote = () => {
     if (selectedCandidate !== null) {
@@ -89,7 +89,7 @@ export function VotingInterface() {
         <p className="text-sm text-gray-600 mt-1">
           ✨ Open voting - Anyone can vote once per address!
         </p>
-      </div> 
+      </div>
       
       <div className="space-y-3 mb-6">
         {candidates.map((candidate) => (
@@ -178,4 +178,4 @@ function CandidateList({ candidates }: { candidates: Candidate[] }) {
       ))}
     </div>
   );
-}
+} 
